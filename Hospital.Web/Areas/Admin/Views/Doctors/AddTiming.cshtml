@@ -1,0 +1,86 @@
+﻿@using Hospital.Models
+@model Hospital.ViewModels.TimingViewModel
+
+@{
+    ViewData["Title"] = "AddTiming";
+}
+
+<h1>AddTiming</h1>
+
+<h4>TimingViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddTiming">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input asp-for="Id" class="form-control" hidden />
+            @*<div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+              
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+           @* <div class="form-group">
+                <label asp-for="DoctorId" class="control-label"></label>
+                <input asp-for="DoctorId" class="form-control" />
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ScheduleDate" class="control-label"></label>
+                <input asp-for="ScheduleDate" class="form-control" />
+                <span asp-validation-for="ScheduleDate" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" asp-items="@Html.GetEnumSelectList<Status>()">
+
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MorningShiftStartTime" class="control-label"></label>
+                 <select asp-for="MorningShiftStartTime" class="form-control" asp-items="@ViewBag.morningStart"></select>
+
+                
+               
+                <span asp-validation-for="MorningShiftStartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MorningShiftEndTime" class="control-label"></label>
+                <select asp-for="MorningShiftEndTime" class="form-control" asp-items="@ViewBag.morningEnd"></select>
+              
+                <span asp-validation-for="MorningShiftEndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AfterNoonShiftStartTime" class="control-label"></label>
+                <select asp-for="AfterNoonShiftStartTime" class="form-control" asp-items="@ViewBag.evenStart"></select>
+              
+                <span asp-validation-for="AfterNoonShiftStartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AfterNoonShiftEndTime" class="control-label"></label>
+           <select asp-for="AfterNoonShiftEndTime" class="form-control" asp-items="@ViewBag.evenEnd"></select>
+
+                <span asp-validation-for="AfterNoonShiftEndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
